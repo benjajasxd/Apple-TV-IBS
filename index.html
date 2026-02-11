@@ -1,198 +1,261 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apple TV+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple TV+</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+<style>
+/* ===== GENERAL ===== */
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: #f5f5f7;
-      color: #111;
-    }
+body {
+  margin: 0;
+  background: #f5f5f7;
+  color: #111;
+}
 
-    /* HERO */
-    .hero {
-      height: 420px;
-      background: linear-gradient(120deg, #000 0%, #1b1f3b 50%, #000 100%);
-      border-radius: 0 0 30px 30px;
-      display: flex;
-      align-items: center;
-      padding: 40px;
-      color: white;
-    }
+/* ===== HERO ===== */
+.hero {
+  height: 420px;
+  background: linear-gradient(120deg, #000 0%, #1b1f3b 50%, #000 100%);
+  border-radius: 0 0 30px 30px;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  color: white;
+}
 
-    .hero-content {
-      max-width: 600px;
-    }
+.hero-content {
+  max-width: 600px;
+}
 
-    .hero h1 {
-      font-size: 64px;
-      margin: 0 0 15px;
-    }
+.hero h1 {
+  font-size: 64px;
+  margin: 0 0 15px;
+}
 
-    .hero p {
-      font-size: 18px;
-      opacity: 0.9;
-      margin-bottom: 30px;
-    }
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
 
-    .hero-btn {
-      display: inline-block;
-      background: white;
-      color: #111;
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.hero-btn {
+  display: inline-block;
+  background: white;
+  color: #111;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .hero-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 25px rgba(255,255,255,0.35);
-    }
+.hero-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(255,255,255,0.35);
+}
 
-    /* SECCIÓN PLANES */
-    .plans-section {
-      padding: 80px 30px;
-      text-align: center;
-    }
+/* ===== CARRUSEL ===== */
+.cinema-carousel {
+  position: relative;
+  max-width: 1000px;
+  margin: 80px auto;
+  overflow: hidden;
+}
 
-    .plans-section h2 {
-      font-size: 40px;
-      margin-bottom: 50px;
-    }
+.track {
+  display: flex;
+  align-items: center;
+}
 
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
+.slide {
+  flex: 0 0 33.333%;
+  display: flex;
+  justify-content: center;
+}
 
-    .plan {
-      background: linear-gradient(160deg, #111, #000);
-      color: white;
-      padding: 35px 25px;
-      border-radius: 25px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-    }
+.slide img {
+  width: 80%;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
+}
 
-    .plan.popular {
-      border: 2px solid #f5c77a;
-      transform: scale(1.05);
-    }
+.center img {
+  transform: scale(1.15);
+  filter: blur(0);
+  opacity: 1;
+}
 
-    .plan h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
+.side img {
+  transform: scale(0.85);
+  filter: blur(5px);
+  opacity: 0.45;
+}
 
-    .price {
-      font-size: 42px;
-      margin: 20px 0;
-    }
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 26px;
+  color: white;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, background 0.3s ease;
+  z-index: 10;
+}
 
-    .price span {
-      font-size: 16px;
-      opacity: 0.7;
-    }
+.btn:hover {
+  transform: translateY(-50%) scale(1.15);
+  background: rgba(255,255,255,0.3);
+}
 
-    .features {
-      text-align: left;
-      margin: 25px 0;
-      font-size: 14px;
-    }
+.prev { left: 15px; }
+.next { right: 15px; }
 
-    .features li {
-      margin-bottom: 10px;
-    }
+/* ===== PLANES ===== */
+.plans-section {
+  padding: 80px 30px;
+  text-align: center;
+}
 
-    .plan-btn {
-      background: #f5c77a;
-      color: #111;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 25px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.plans-section h2 {
+  font-size: 40px;
+  margin-bottom: 50px;
+}
 
-    /* RESPONSIVE */
-    @media (max-width: 700px) {
-      .hero {
-        height: auto;
-        padding: 30px;
-      }
+.plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-      .hero h1 {
-        font-size: 42px;
-      }
-    }
-  </style>
+.plan {
+  background: linear-gradient(160deg, #111, #000);
+  color: white;
+  padding: 35px 25px;
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.plan.popular {
+  border: 2px solid #f5c77a;
+  transform: scale(1.05);
+}
+
+.price {
+  font-size: 42px;
+  margin: 20px 0;
+}
+
+.plan-btn {
+  background: #f5c77a;
+  color: #111;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Apple TV+</h1>
-      <p>Series y películas originales. Sin anuncios.</p>
-      <a href="#planes" class="hero-btn">Ver planes</a>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Apple TV+</h1>
+    <p>Series y películas originales. Sin anuncios.</p>
+    <a href="#planes" class="hero-btn">Ver planes</a>
+  </div>
+</section>
 
-  <!-- PLANES -->
-  <section class="plans-section" id="planes">
-    <h2>Nuestros planes</h2>
+<!-- CARRUSEL -->
+<div class="cinema-carousel" id="carousel">
+  <button class="btn prev" id="prev">❮</button>
 
-    <div class="plans">
-      <div class="plan">
-        <h3>Plan TV</h3>
-        <p>Ideal para una persona</p>
-        <div class="price">$120 <span>/ mes</span></div>
-        <ul class="features">
-          <li>✔ Calidad HD (1080p)</li>
-          <li>✔ 2 dispositivos</li>
-          <li>✖ Sin descargas offline</li>
-        </ul>
-        <button class="plan-btn">Elegir plan</button>
-      </div>
+  <div class="track" id="track">
+    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BNGI0MDI4NjEtOWU3ZS00ODQyLWFhYTgtNGYxM2ZkM2Q2YjE3XkEyXkFqcGc@._V1_.jpg"></div>
+    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BZmQ3NmIxNTgtYjFiNS00NzliLWI0YzAtZDkxY2E0YWIxZDEwXkEyXkFqcGc@._V1_.jpg"></div>
+    <div class="slide"><img src="https://www.sonypictures.es/statics/KEY_ART_1400x2100_2_00f1b3ceb2.jpg"></div>
+    <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Fast_and_Furious_Poster.jpg"></div>
+    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BODA5MDc2NDI5OF5BMl5BanBnXkFtZTgwNDYzMTA2NjE@._V1_.jpg"></div>
+  </div>
 
-      <div class="plan popular">
-        <h3>Plan TV+</h3>
-        <p>El más popular</p>
-        <div class="price">$380 <span>/ mes</span></div>
-        <ul class="features">
-          <li>✔ Calidad 2K</li>
-          <li>✔ 4 dispositivos</li>
-          <li>✔ Descargas limitadas</li>
-        </ul>
-        <button class="plan-btn">Recomendado</button>
-      </div>
+  <button class="btn next" id="next">❯</button>
+</div>
 
-      <div class="plan">
-        <h3>Plan TV+ PRO</h3>
-        <p>Ideal para toda la familia</p>
-        <div class="price">$600 <span>/ mes</span></div>
-        <ul class="features">
-          <li>✔ Ultra HD (4K)</li>
-          <li>✔ 8 dispositivos</li>
-          <li>✔ Descargas ilimitadas</li>
-        </ul>
-        <button class="plan-btn">Elegir plan</button>
-      </div>
-    </div>
-  </section>
+<!-- PLANES -->
+<section class="plans-section" id="planes">
+  <h2>Nuestros planes</h2>
+  <div class="plans">
+    <div class="plan"><h3>Plan TV</h3><div class="price">$120</div></div>
+    <div class="plan popular"><h3>Plan TV+</h3><div class="price">$380</div></div>
+    <div class="plan"><h3>Plan TV+ PRO</h3><div class="price">$600</div></div>
+  </div>
+</section>
+
+<script>
+const track = document.getElementById("track");
+const carousel = document.getElementById("carousel");
+let isAnimating = false;
+let autoplay;
+
+function setClasses() {
+  const slides = document.querySelectorAll(".slide");
+  slides.forEach(s => s.className = "slide");
+  slides[1].classList.add("center");
+  slides[0].classList.add("side");
+  slides[2].classList.add("side");
+}
+
+function move(dir) {
+  if (isAnimating) return;
+  isAnimating = true;
+  const slideWidth = track.children[0].offsetWidth;
+  track.style.transition = "transform 0.6s ease";
+  track.style.transform = `translateX(${dir * -slideWidth}px)`;
+
+  setTimeout(() => {
+    track.style.transition = "none";
+    track.style.transform = "translateX(0)";
+    dir === 1 ? track.appendChild(track.firstElementChild)
+              : track.insertBefore(track.lastElementChild, track.firstElementChild);
+    setClasses();
+    isAnimating = false;
+  }, 600);
+}
+
+function startAutoplay() {
+  autoplay = setInterval(() => move(1), 3500);
+}
+
+function stopAutoplay() {
+  clearInterval(autoplay);
+}
+
+document.getElementById("next").onclick = () => { stopAutoplay(); move(1); startAutoplay(); };
+document.getElementById("prev").onclick = () => { stopAutoplay(); move(-1); startAutoplay(); };
+
+carousel.addEventListener("mouseenter", stopAutoplay);
+carousel.addEventListener("mouseleave", startAutoplay);
+
+setClasses();
+startAutoplay();
+</script>
 
 </body>
 </html>
