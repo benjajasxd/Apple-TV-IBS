@@ -392,12 +392,31 @@ window.addEventListener("scroll", () => {
   }
 });
 
-  document.getElementById("scrollBtn").addEventListener("click", function(e) {
+// Smooth scroll para el botón "Ver planes"
+document.getElementById("scrollBtn").addEventListener("click", function(e) {
   e.preventDefault();
   document.getElementById("planes").scrollIntoView({
     behavior: "smooth"
   });
 });
+
+// Smooth scroll para todos los links del topBar
+document.querySelectorAll("#topBar nav a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href").substring(1); // quitar el #
+    if(targetId){ 
+      const targetEl = document.getElementById(targetId);
+      if(targetEl){
+        targetEl.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Si no hay id, subir hasta arriba
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+});
+
 
 const track = document.getElementById("track");
 const carousel = document.getElementById("carousel");
