@@ -61,6 +61,27 @@ body {
 }
 
 /* ===== CARRUSEL ===== */
+.carousel-title {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 800;
+  margin: 80px 0 40px;
+  color: black;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+/* Línea decorativa abajo */
+.carousel-title::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff4d4d, #ff0000);
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 10px;
+}
+
 .cinema-carousel {
   position: relative;
   max-width: 1000px;
@@ -254,6 +275,8 @@ body {
 </section>
 
 <!-- CARRUSEL -->
+<h2 class="carousel-title">Más Populares</h2>
+
 <div class="cinema-carousel" id="carousel">
   <button class="btn prev" id="prev">❮</button>
 
