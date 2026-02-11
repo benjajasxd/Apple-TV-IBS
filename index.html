@@ -263,8 +263,10 @@ body {
 @media (max-width: 600px) {
   .plan.featured {
     transform: scale(1);
-  }
-/* HEADER */
+ }
+ }
+  
+/* ===== HEADER FIXED ===== */
 #topBar {
   position: fixed;
   top: -60px; /* empieza oculto arriba */
@@ -291,7 +293,6 @@ body {
   color: #f5c77a;
 }
 
-}  
 </style>
 </head>
 
@@ -379,6 +380,18 @@ body {
 </section>
 
 <script>
+// SCROLL TRIGGERED TOP BAR
+const topBar = document.getElementById("topBar");
+const heroHeight = document.querySelector(".hero").offsetHeight;
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > heroHeight) {
+    topBar.style.top = "0"; // aparece
+  } else {
+    topBar.style.top = "-60px"; // desaparece
+  }
+});
+
   document.getElementById("scrollBtn").addEventListener("click", function(e) {
   e.preventDefault();
   document.getElementById("planes").scrollIntoView({
