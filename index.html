@@ -405,17 +405,20 @@ document.querySelectorAll("#topBar nav a").forEach(link => {
   link.addEventListener("click", function(e) {
     e.preventDefault();
     const targetId = this.getAttribute("href").substring(1); // quitar el #
-    if(targetId){ 
-      const targetEl = document.getElementById(targetId);
-      if(targetEl){
-        targetEl.scrollIntoView({ behavior: "smooth" });
-      }
+    const targetEl = document.getElementById(targetId);
+    if(targetEl){
+      const topOffset = document.getElementById("topBar").offsetHeight;
+      const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - topOffset, 
+        behavior: "smooth"
+      });
     } else {
-      // Si no hay id, subir hasta arriba
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 });
+
 
 
 const track = document.getElementById("track");
