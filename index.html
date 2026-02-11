@@ -148,6 +148,9 @@ body {
   background: linear-gradient(180deg, #1a1a1a, #0e0e0e);
   border-radius: 20px;
   padding: 40px 30px;
+  color: white;          /* 👈 importante */
+  text-align: center;    /* opcional pero se ve mejor */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .plan:hover {
@@ -211,12 +214,31 @@ body {
   background: #ffd996;
   transform: scale(1.08);
   }
-}  
+ /* BOTÓN LINK (para los <a>) */
+.btn-link {
+  display: inline-block;
+  background: #f5c77a;
+  color: #111;
+  text-decoration: none;
+  padding: 14px 24px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-link:hover {
+  background: #ffd996;
+  transform: scale(1.08);
+}
+ 
+
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .plan.featured {
     transform: scale(1);
   }
+}  
 </style>
 </head>
 
