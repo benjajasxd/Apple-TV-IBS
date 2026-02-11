@@ -249,7 +249,7 @@ body {
   <div class="hero-content">
     <h1>Apple TV+</h1>
     <p>Series y películas originales. Sin anuncios.</p>
-    <a href="#planes" class="hero-btn">Ver planes</a>
+    <a href="#" class="hero-btn" id="scrollBtn">Ver planes</a>
   </div>
 </section>
 
@@ -317,6 +317,13 @@ body {
 </section>
 
 <script>
+  document.getElementById("scrollBtn").addEventListener("click", function(e) {
+  e.preventDefault();
+  document.getElementById("planes").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
 const track = document.getElementById("track");
 const carousel = document.getElementById("carousel");
 let isAnimating = false;
