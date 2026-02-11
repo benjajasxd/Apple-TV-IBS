@@ -1,93 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Apple TV</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apple TV+</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-/* HERO */
-.hero {
-  position: relative;
-  height: 320px;
-  max-width: 1200px;
-  margin: 40px auto;
-  border-radius: 22px;
-  overflow: hidden;
-  background: linear-gradient(
-      rgba(0,0,0,0.65),
-      rgba(0,0,0,0.65)
-    ),
-    url("https://www.apple.com/v/apple-tv-plus/ai/images/overview/apple_tv_plus_logo__ffoj8r8u0j2e_large.png")
-    center / cover no-repeat;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-}
+    body {
+      margin: 0;
+      background: #f5f5f7;
+      color: #111;
+    }
 
-/* CONTENIDO */
-.hero-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px;
-  color: white;
-}
+    /* HERO */
+    .hero {
+      height: 420px;
+      background: linear-gradient(120deg, #000 0%, #1b1f3b 50%, #000 100%);
+      border-radius: 0 0 30px 30px;
+      display: flex;
+      align-items: center;
+      padding: 40px;
+      color: white;
+    }
 
-.hero-content h1 {
-  font-size: 56px;
-  margin: 0;
-}
+    .hero-content {
+      max-width: 600px;
+    }
 
-.hero-content p {
-  font-size: 18px;
-  opacity: 0.85;
-  margin: 12px 0 26px;
-}
+    .hero h1 {
+      font-size: 64px;
+      margin: 0 0 15px;
+    }
 
-/* BOTÓN */
-.hero-btn {
-  display: inline-block;
-  width: fit-content;
-  background: white;
-  color: #111;
-  text-decoration: none;
-  padding: 14px 26px;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .hero p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
 
-.hero-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(255,255,255,0.35);
-}
+    .hero-btn {
+      display: inline-block;
+      background: white;
+      color: #111;
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-/* RESPONSIVE */
-@media (max-width: 700px) {
-  .hero {
-    height: 260px;
-  }
+    .hero-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 25px rgba(255,255,255,0.35);
+    }
 
-  .hero-content h1 {
-    font-size: 40px;
-  }
-}
-</style>
+    /* SECCIÓN PLANES */
+    .plans-section {
+      padding: 80px 30px;
+      text-align: center;
+    }
+
+    .plans-section h2 {
+      font-size: 40px;
+      margin-bottom: 50px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .plan {
+      background: linear-gradient(160deg, #111, #000);
+      color: white;
+      padding: 35px 25px;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    }
+
+    .plan.popular {
+      border: 2px solid #f5c77a;
+      transform: scale(1.05);
+    }
+
+    .plan h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 42px;
+      margin: 20px 0;
+    }
+
+    .price span {
+      font-size: 16px;
+      opacity: 0.7;
+    }
+
+    .features {
+      text-align: left;
+      margin: 25px 0;
+      font-size: 14px;
+    }
+
+    .features li {
+      margin-bottom: 10px;
+    }
+
+    .plan-btn {
+      background: #f5c77a;
+      color: #111;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .hero {
+        height: auto;
+        padding: 30px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="hero">
-  <div class="hero-content">
-    <h1>Apple TV+</h1>
-    <p>Series y películas originales. Sin anuncios.</p>
-    <a href="#" class="hero-btn">Ver planes</a>
-  </div>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Apple TV+</h1>
+      <p>Series y películas originales. Sin anuncios.</p>
+      <a href="#planes" class="hero-btn">Ver planes</a>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section class="plans-section" id="planes">
+    <h2>Nuestros planes</h2>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Plan TV</h3>
+        <p>Ideal para una persona</p>
+        <div class="price">$120 <span>/ mes</span></div>
+        <ul class="features">
+          <li>✔ Calidad HD (1080p)</li>
+          <li>✔ 2 dispositivos</li>
+          <li>✖ Sin descargas offline</li>
+        </ul>
+        <button class="plan-btn">Elegir plan</button>
+      </div>
+
+      <div class="plan popular">
+        <h3>Plan TV+</h3>
+        <p>El más popular</p>
+        <div class="price">$380 <span>/ mes</span></div>
+        <ul class="features">
+          <li>✔ Calidad 2K</li>
+          <li>✔ 4 dispositivos</li>
+          <li>✔ Descargas limitadas</li>
+        </ul>
+        <button class="plan-btn">Recomendado</button>
+      </div>
+
+      <div class="plan">
+        <h3>Plan TV+ PRO</h3>
+        <p>Ideal para toda la familia</p>
+        <div class="price">$600 <span>/ mes</span></div>
+        <ul class="features">
+          <li>✔ Ultra HD (4K)</li>
+          <li>✔ 8 dispositivos</li>
+          <li>✔ Descargas ilimitadas</li>
+        </ul>
+        <button class="plan-btn">Elegir plan</button>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
