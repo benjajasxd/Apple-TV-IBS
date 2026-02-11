@@ -125,50 +125,83 @@ body {
 .next { right: 15px; }
 
 /* ===== PLANES ===== */
-.plans-section {
-  padding: 80px 40px;
-  text-align: center;
-}
-
-.plans-section h2 {
-  font-size: 40px;
-  margin-bottom: 50px;
-}
-
-.plans {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-  max-width: 1000px;
-  margin: auto;
-}
-
 .plan {
-  background: linear-gradient(160deg, #111, #000);
+  background: linear-gradient(180deg, #1a1a1a, #0e0e0e);
+  border-radius: 20px;
+  padding: 30px;
   color: white;
-  padding: 35px 25px;
-  border-radius: 25px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.plan.popular {
+.plan:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+}
+
+/* DESTACADO */
+.plan.featured {
   border: 2px solid #f5c77a;
   transform: scale(1.05);
 }
 
-.price {
-  font-size: 42px;
-  margin: 20px 0;
+/* TEXTO */
+.plan h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
-.plan-btn {
+.price {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.price span {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.plan p {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* LISTA */
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.plan ul li {
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* BOTÓN */
+.plan button {
   background: #f5c77a;
   color: #111;
   border: none;
-  padding: 12px 22px;
-  border-radius: 25px;
-  font-weight: bold;
+  padding: 14px 24px;
+  font-size: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
+
+.plan button:hover {
+  background: #ffd996;
+  transform: scale(1.08);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .plan.featured {
+    transform: scale(1);
+  }
 </style>
 </head>
 
