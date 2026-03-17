@@ -43,26 +43,78 @@ body {
   margin: 0 0 15px;
 }
 
-.hero p {
-  font-size: 18px;
-  opacity: 0.9;
-  margin-bottom: 30px;
+/* CONTENEDOR BOTÓN + TEXTO */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 25px;
 }
 
+/* BOTÓN */
 .hero-btn {
-  display: inline-block;
   background: white;
   color: #111;
-  padding: 14px 28px;
-  border-radius: 30px;
+  padding: 14px 30px;
+  border-radius: 999px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-btn:hover {
   transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(255,255,255,0.35);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.35);
+}
+
+/* TEXTO PRUEBA GRATIS (GRADIENTE ANIMADO) */
+.hero-trial {
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #bfbfbf,
+    #ffffff
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+  white-space: nowrap;
+}
+
+/* SUBTEXTO */
+.hero-subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+/* ANIMACIÓN GRADIENTE */
+@keyframes shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  text-shadow: 0 0 30px rgba(255,255,255,0.15);
 }
 
 /* ===== CARRUSEL ===== */
@@ -269,17 +321,24 @@ body {
 /* ===== HEADER FIXED ===== */
 #topBar {
   position: fixed;
-  top: -60px; /* empieza oculto arriba */
+  top: -60px;
   left: 0;
   width: 100%;
-  height: 60px;
-  background: rgba(0,0,0,0.9); /* barra negra semi-transparente */
+  height: 60px;   /* ← déjalo normal */
+  background: rgba(0,0,0,0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   transition: top 0.4s ease;
   z-index: 1000;
 }
+
+.topbar-logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
 
 #topBar nav a {
   color: white;
@@ -298,6 +357,10 @@ body {
 
 <body>
 <header id="topBar">
+  <div class="topbar-logo">
+    <img src="logo.png" alt="Apple TV logo">
+  </div>
+
   <nav>
     <a href="#planes">Planes</a>
     <a href="#carousel">Populares</a>
@@ -309,8 +372,20 @@ body {
 <section class="hero">
   <div class="hero-content">
     <h1>Apple TV+</h1>
-    <p>Series y películas originales. Sin anuncios.</p>
-    <a href="#" class="hero-btn" id="scrollBtn">Ver planes</a>
+
+    <p class="hero-subtitle">
+      Series y películas originales. Sin anuncios.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#" class="hero-btn" id="scrollBtn">
+        Iniciar prueba gratis · $0/mes
+      </a>
+
+      <span class="hero-trial">
+        Prueba gratuita de 1 mes
+      </span>
+    </div>
   </div>
 </section>
 
@@ -338,11 +413,11 @@ body {
 
   <div class="track" id="new-track">
     <!-- Aquí agregas tus imágenes -->
-    <div class="slide"><img src="https://imgs.search.brave.com/TFBVt5Q-Pn86g1Ck6Fl_qtjK4QaLZoIxfvs_IKIDgBg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9RX05QXzJY/Xzk3MDc4MS1NTE03/NjU5NDI4MjE3Ml8w/NjIwMjQtVi1sYS1y/YXpvbi1kZS1lc3Rh/ci1jb250aWdvLndl/YnA"></div>
-    <div class="slide"><img src="https://imgs.search.brave.com/x52WSDVSTMBCBBHT7vHoNUXtkkeCCxAh7vZMlocZQXg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFNZTQ1M0xvMUwu/anBn"></div>
-    <div class="slide"><img src="https://imgs.search.brave.com/IPb99lJeNyRnMemd6U6RwM3e1YGJCToiHo7y0tYGWdI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzc1L2I3/Lzg0Lzc1Yjc4NDY0/Y2Q5MjlhNGYxOGM5/ZDc0YTk4ODEwMmE5/LmpwZw"></div>
-    <div class="slide"><img src="https://imgs.search.brave.com/23qYu6R4HglMUlwjxq2jhEgu1vgOUFju2dTXCpuHv_s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c29waXRhcy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjMv/MDEvZ2F0by1jb24t/Ym90YXMtZWwtdWx0/aW1vLWRlc2VvLW1l/am9yLXBlbGljdWxh/LXVuaXZlcnNvLXNo/cmVrLTIuanBnP3c9/Njc0"></div>
-    <div class="slide"><img src="https://imgs.search.brave.com/UFktQbaf8fgt8j1-tT9fwFomyGZISEs2ODOtD0WUcsk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFxVGE2Z2pOSEwu/anBn"></div>
+    <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Happy_Gilmore_2_poster.jpg/250px-Happy_Gilmore_2_poster.jpg"></div>
+    <div class="slide"><img src="https://m.media-amazon.com/images/I/910kHAzIxvL.jpg"></div>
+    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BNWQyMTJiZWYtNzQ2Mi00Y2E1LThmNzgtNGU0ZjQ3NTg5YWRhXkEyXkFqcGc@._V1_.jpg"></div>
+    <div class="slide"><img src="https://moviepostermexico.com/cdn/shop/products/af270ef2b0dde68d3d598f04ae06f190-13200-poster_530x@2x.jpg?v=1587757239"></div>
+    <div class="slide"><img src="https://halifaxbloggers.ca/flawintheiris/wp-content/uploads/sites/7/2014/11/Interstellar-Poster-HD-Wallpapers-Images-Pics-24.jpg"></div>
   </div>
 
   <button class="btn next" id="new-next">❯</button>
@@ -397,39 +472,35 @@ body {
 </section>
 
 <script>
-// SCROLL TRIGGERED TOP BAR
-const topBar = document.getElementById("topBar");
-const heroHeight = document.querySelector(".hero").offsetHeight;
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== TOP BAR =====
+  const topBar = document.getElementById("topBar");
+  const hero = document.querySelector(".hero");
+  const heroHeight = hero.offsetHeight;
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > heroHeight) {
-    topBar.style.top = "0"; // aparece
-  } else {
-    topBar.style.top = "-60px"; // desaparece
-  }
-});
-
-// Smooth scroll para el botón "Ver planes"
-document.getElementById("scrollBtn").addEventListener("click", function(e) {
-  e.preventDefault();
-  document.getElementById("planes").scrollIntoView({
-    behavior: "smooth"
+  window.addEventListener("scroll", () => {
+    topBar.style.top = window.scrollY > heroHeight ? "0" : "-60px";
   });
-});
 
-// Smooth scroll para todos los links del topBar
+  // Smooth scroll para botón "Ver planes"
+  document.getElementById("scrollBtn").addEventListener("click", e => {
+    e.preventDefault();
+    document.getElementById("planes").scrollIntoView({ behavior: "smooth" });
+  });
+
+// Smooth scroll para links del topBar
 document.querySelectorAll("#topBar nav a").forEach(link => {
   link.addEventListener("click", function(e) {
     e.preventDefault();
-    const targetId = this.getAttribute("href").substring(1); // quitar el #
+    const targetId = this.getAttribute("href").substring(1);
     const targetEl = document.getElementById(targetId);
+
     if(targetEl){
-      const topOffset = document.getElementById("topBar").offsetHeight;
+      const topOffset = topBar.offsetHeight;
       const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: elementPosition - topOffset, 
-        behavior: "smooth"
-      });
+      // Ajuste extra de margen (si tu sección tiene margin-top grande)
+      const marginAdjustment = 20; // puedes cambiar 20 por lo que se vea bien
+      window.scrollTo({ top: elementPosition - topOffset - marginAdjustment, behavior: "smooth" });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -437,54 +508,68 @@ document.querySelectorAll("#topBar nav a").forEach(link => {
 });
 
 
+  // ===== FUNCIONES CARRUSEL =====
+  function initCarousel(carouselId, trackId, prevBtnId, nextBtnId, autoplayDelay = 3500) {
+    const carousel = document.getElementById(carouselId);
+    const track = document.getElementById(trackId);
+    let isAnimating = false;
+    let autoplay;
 
-const track = document.getElementById("track");
-const carousel = document.getElementById("carousel");
-let isAnimating = false;
-let autoplay;
+    function setClasses() {
+      const slides = Array.from(track.children);
+      slides.forEach(s => s.className = "slide");
+      if(slides.length >= 3){
+        slides[1].classList.add("center");
+        slides[0].classList.add("side");
+        slides[2].classList.add("side");
+      }
+    }
 
-function setClasses() {
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach(s => s.className = "slide");
-  slides[1].classList.add("center");
-  slides[0].classList.add("side");
-  slides[2].classList.add("side");
-}
+    function move(dir) {
+      if(isAnimating) return;
+      isAnimating = true;
+      const slideWidth = track.children[0].offsetWidth;
+      track.style.transition = "transform 0.6s ease";
+      track.style.transform = `translateX(${dir * -slideWidth}px)`;
 
-function move(dir) {
-  if (isAnimating) return;
-  isAnimating = true;
-  const slideWidth = track.children[0].offsetWidth;
-  track.style.transition = "transform 0.6s ease";
-  track.style.transform = `translateX(${dir * -slideWidth}px)`;
+      setTimeout(() => {
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        dir === 1 ? track.appendChild(track.firstElementChild)
+                  : track.insertBefore(track.lastElementChild, track.firstElementChild);
+        setClasses();
+        isAnimating = false;
+      }, 600);
+    }
 
-  setTimeout(() => {
-    track.style.transition = "none";
-    track.style.transform = "translateX(0)";
-    dir === 1 ? track.appendChild(track.firstElementChild)
-              : track.insertBefore(track.lastElementChild, track.firstElementChild);
+    function startAutoplay() {
+      stopAutoplay();
+      autoplay = setInterval(() => move(1), autoplayDelay);
+    }
+
+    function stopAutoplay() {
+      if(autoplay) clearInterval(autoplay);
+    }
+
+    // Botones
+    document.getElementById(nextBtnId).addEventListener("click", () => { stopAutoplay(); move(1); startAutoplay(); });
+    document.getElementById(prevBtnId).addEventListener("click", () => { stopAutoplay(); move(-1); startAutoplay(); });
+
+    // Hover pausa autoplay
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+
     setClasses();
-    isAnimating = false;
-  }, 600);
-}
+    startAutoplay();
+  }
 
-function startAutoplay() {
-  autoplay = setInterval(() => move(1), 3500);
-}
-
-function stopAutoplay() {
-  clearInterval(autoplay);
-}
-
-document.getElementById("next").onclick = () => { stopAutoplay(); move(1); startAutoplay(); };
-document.getElementById("prev").onclick = () => { stopAutoplay(); move(-1); startAutoplay(); };
-
-carousel.addEventListener("mouseenter", stopAutoplay);
-carousel.addEventListener("mouseleave", startAutoplay);
-
-setClasses();
-startAutoplay();
+  // Inicializar ambos carruseles
+  initCarousel("carousel", "track", "prev", "next");
+  initCarousel("new-carousel", "new-track", "new-prev", "new-next");
+});
 </script>
 
+
+
 </body>
-</html>
+</html> 
