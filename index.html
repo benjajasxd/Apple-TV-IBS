@@ -1,575 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByttenApple | Streaming Exclusivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apple TV+</title>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-<style>
-/* ===== GENERAL ===== */
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
+        /* Navegación */
+        nav {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
 
-body {
-  margin: 0;
-  color: #111;
-  /* Gradiente de arriba a abajo, gris a negro */
-  background: linear-gradient(to bottom, #e0e0e0, #111);
-  min-height: 100vh;
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff3b30; /* Un rojo "manzana" vibrante */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
+        /* Hero Section (Encabezado) */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a), 
+                        url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-/* ===== HERO ===== */
-.hero {
-  height: 420px;
-  background: linear-gradient(120deg, #000 0%, #1b1f3b 50%, #000 100%);
-  border-radius: 0 0 30px 30px;
-  display: flex;
-  align-items: center;
-  padding: 40px;
-  color: white;
-}
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
 
-.hero-content {
-  max-width: 600px;
-}
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
 
-.hero h1 {
-  font-size: 64px;
-  margin: 0 0 15px;
-}
+        .btn-prueba {
+            background-color: #ff3b30;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
 
-/* CONTENEDOR BOTÓN + TEXTO */
-.hero-cta {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-top: 25px;
-}
+        .btn-prueba:hover {
+            background-color: #d32f2f;
+            transform: scale(1.05);
+        }
 
-/* BOTÓN */
-.hero-btn {
-  background: white;
-  color: #111;
-  padding: 14px 30px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Carrusel / Cartelera */
+        .content-section {
+            padding: 50px;
+        }
 
-.hero-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.35);
-}
+        .content-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
 
-/* TEXTO PRUEBA GRATIS (GRADIENTE ANIMADO) */
-.hero-trial {
-  font-size: 16px;
-  font-weight: 700;
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #bfbfbf,
-    #ffffff
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
-  white-space: nowrap;
-}
+        .carousel-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scrollbar-width: none; /* Ocultar scroll en Firefox */
+        }
 
-/* SUBTEXTO */
-.hero-subtitle {
-  font-size: 18px;
-  opacity: 0.9;
-  margin-bottom: 10px;
-}
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Ocultar scroll en Chrome/Safari */
+        }
 
-/* ANIMACIÓN GRADIENTE */
-@keyframes shimmer {
-  from {
-    background-position: 0% 50%;
-  }
-  to {
-    background-position: 200% 50%;
-  }
-}
+        .movie-card {
+            min-width: 200px;
+            height: 300px;
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.hero h1 {
-  text-shadow: 0 0 30px rgba(255,255,255,0.15);
-}
+        .movie-card:hover {
+            transform: scale(1.1);
+            z-index: 5;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+        }
 
-/* ===== CARRUSEL ===== */
-.carousel-title {
-  font-family: 'Bebas Neue', sans-serif ;
-  text-align: center;
-  font-size: 38px;
-  font-weight: 800;
-  margin: 80px 0 40px;
-  color: black;
-  letter-spacing: 1px;
-  position: relative;
-}
+        .movie-card::after {
+            content: "VER AHORA";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
 
-/* Línea decorativa abajo */
-.carousel-title::after {
-  content: "";
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #ff4d4d, #ff0000);
-  display: block;
-  margin: 12px auto 0;
-  border-radius: 10px;
-}
+        .movie-card:hover::after {
+            opacity: 1;
+        }
 
-.cinema-carousel {
-  position: relative;
-  max-width: 1000px; 
-  margin: 80px auto;
-  overflow: hidden;
-}
-
-.track {
-  display: flex;
-  align-items: center;
-}
-
-.slide {
-  flex: 0 0 33.333%;
-  display: flex;
-  justify-content: center;
-}
-
-.slide img {
-  width: 80%;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
-}
-
-.center img {
-  transform: scale(1.15);
-  filter: blur(0);
-  opacity: 1;
-}
-
-.side img {
-  transform: scale(0.85);
-  filter: blur(5px);
-  opacity: 0.45;
-}
-
-.btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 26px;
-  color: white;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, background 0.3s ease;
-  z-index: 10;
-}
-
-.btn:hover {
-  transform: translateY(-50%) scale(1.15);
-  background: rgba(255,255,255,0.3);
-}
-
-.prev { left: 15px; }
-.next { right: 15px; }
-
-/* ===== PLANES ===== */
-  .plans-section {
-  padding: 80px 40px;
-}
-
-.plans-section h2 {
-  text-align: center;
-  font-size: 42px;
-  margin-bottom: 60px;
-}
-
-.plans {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-}
-
-.plan {
-  background: linear-gradient(180deg, #1a1a1a, #0e0e0e);
-  border-radius: 20px;
-  padding: 40px 30px;
-  color: white;          /* 👈 importante */
-  text-align: center;    /* opcional pero se ve mejor */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.plan:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-}
-
-/* DESTACADO */
-.plan.featured {
-  border: 2px solid #f5c77a;
-  transform: scale(1.05);
-}
-
-/* TEXTO */
-.plan h3 {
-  font-size: 42px;
-  margin-bottom: 60px;
-}
-
-.price {
-  font-size: 40px;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.price span {
-  font-size: 16px;
-  opacity: 0.7;
-}
-
-.plan p {
-  opacity: 0.8;
-  margin-bottom: 20px;
-}
-
-/* LISTA */
-.plan ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 25px;
-}
-
-.plan ul li {
-  margin: 12px 0;
-  font-size: 15px;
-}
-
-/* BOTÓN */
-.plan button {
-  background: #f5c77a;
-  color: #111;
-  border: none;
-  padding: 14px 24px;
-  font-size: 15px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.plan button:hover {
-  background: #ffd996;
-  transform: scale(1.08);
-  }
- /* BOTÓN LINK (para los <a>) */
-.btn-link {
-  display: inline-block;
-  background: #f5c77a;
-  color: #111;
-  text-decoration: none;
-  padding: 14px 24px;
-  font-size: 15px;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.btn-link:hover {
-  background: #ffd996;
-  transform: scale(1.08);
-}
- 
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .plan.featured {
-    transform: scale(1);
- }
- }
-  
-/* ===== HEADER FIXED ===== */
-#topBar {
-  position: fixed;
-  top: -60px;
-  left: 0;
-  width: 100%;
-  height: 60px;   /* ← déjalo normal */
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: top 0.4s ease;
-  z-index: 1000;
-}
-
-.topbar-logo img {
-  height: 50px;
-  width: auto;
-  object-fit: contain;
-}
-
-
-#topBar nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-#topBar nav a:hover {
-  color: #f5c77a;
-}
-
-</style>
+    </style>
 </head>
-
 <body>
-<header id="topBar">
-  <div class="topbar-logo">
-    <img src="logo.png" alt="Apple TV logo">
-  </div>
 
-  <nav>
-    <a href="#planes">Planes</a>
-    <a href="#carousel">Populares</a>
-    <a href="#hero">Inicio</a>
-  </nav>
-</header>
+    <nav>
+        <div class="logo">ByttenApple</div>
+    </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Apple TV+</h1>
+    <header class="hero">
+        <h1>Lo mejor está aquí.</h1>
+        <p>Series originales, películas premiadas y documentales que no verás en ningún otro lugar.</p>
+        <a href="#" class="btn-prueba">Comienza tu prueba gratuita</a>
+    </header>
 
-    <p class="hero-subtitle">
-      Series y películas originales. Sin anuncios.
-    </p>
-
-    <div class="hero-cta">
-      <a href="#" class="hero-btn" id="scrollBtn">
-        Iniciar prueba gratis · $0/mes
-      </a>
-
-      <span class="hero-trial">
-        Prueba gratuita de 1 mes
-      </span>
-    </div>
-  </div>
-</section>
-
-<!-- CARRUSEL -->
-<h2 class="carousel-title">Peliculas Mas Populares</h2>
-
-<div class="cinema-carousel" id="carousel">
-  <button class="btn prev" id="prev">❮</button>
-
-  <div class="track" id="track">
-    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BNGI0MDI4NjEtOWU3ZS00ODQyLWFhYTgtNGYxM2ZkM2Q2YjE3XkEyXkFqcGc@._V1_.jpg"></div>
-    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BZmQ3NmIxNTgtYjFiNS00NzliLWI0YzAtZDkxY2E0YWIxZDEwXkEyXkFqcGc@._V1_.jpg"></div>
-    <div class="slide"><img src="https://www.sonypictures.es/statics/KEY_ART_1400x2100_2_00f1b3ceb2.jpg"></div>
-    <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Fast_and_Furious_Poster.jpg"></div>
-    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BODA5MDc2NDI5OF5BMl5BanBnXkFtZTgwNDYzMTA2NjE@._V1_.jpg"></div>
-  </div>
-
-  <button class="btn next" id="next">❯</button>
-</div>
-<!-- NUEVOS LANZAMIENTOS -->
-<h2 class="carousel-title">Nuevos Lanzamientos</h2>
-
-<div class="cinema-carousel" id="new-carousel">
-  <button class="btn prev" id="new-prev">❮</button>
-
-  <div class="track" id="new-track">
-    <!-- Aquí agregas tus imágenes -->
-    <div class="slide"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Happy_Gilmore_2_poster.jpg/250px-Happy_Gilmore_2_poster.jpg"></div>
-    <div class="slide"><img src="https://m.media-amazon.com/images/I/910kHAzIxvL.jpg"></div>
-    <div class="slide"><img src="https://m.media-amazon.com/images/M/MV5BNWQyMTJiZWYtNzQ2Mi00Y2E1LThmNzgtNGU0ZjQ3NTg5YWRhXkEyXkFqcGc@._V1_.jpg"></div>
-    <div class="slide"><img src="https://moviepostermexico.com/cdn/shop/products/af270ef2b0dde68d3d598f04ae06f190-13200-poster_530x@2x.jpg?v=1587757239"></div>
-    <div class="slide"><img src="https://halifaxbloggers.ca/flawintheiris/wp-content/uploads/sites/7/2014/11/Interstellar-Poster-HD-Wallpapers-Images-Pics-24.jpg"></div>
-  </div>
-
-  <button class="btn next" id="new-next">❯</button>
-</div>
-
-<!-- PLANES -->
-<section class="plans-section" id="planes">
-  <h2>Nuestros planes</h2>
-  <div class="plans">
-<!-- PLAN 1 -->
-  <div class="plan">
-    <h3>Plan TV</h3>
-    <p>Ideal para una persona</p>
-    <div class="price">$120 <span>/ mes</span></div>
-    <ul>
-      <li>✔ Acceso a contenido estándar</li>
-      <li>✔ Calidad HD (1080p)</li>
-      <li>✔ Reproducción en 2 dispositivo</li>
-     <li>✖ Sin descargas offline</li>
-    </ul>
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn-link">Elegir Plan</a>
-  </div>
-
-  <!-- PLAN 2 DESTACADO -->
-  <div class="plan featured">
-    <h3>Plan TV+</h3>
-    <p>El más popular</p>
-    <div class="price">$380 <span>/ mes</span></div>
-    <ul>
-        <li>✔ Todo lo del Plan TV</li>
-        <li>✔ Calidad 2k</li>
-        <li>✔ Hasta 4 dispositivos simultáneos</li>
-        <li>✔ Contenido exclusivo</li>
-        <li>✔ Descargas para ver sin conexión limitadas</li>
-    </ul>
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn-link">Recomendado</a>
-  </div>
-
-  <!-- PLAN 3 -->
-  <div class="plan">
-    <h3>Plan TV+ PRO</h3>
-    <p>Ideal para toda una familia!</p>
-    <div class="price">$600 <span>/ mes</span></div>
-    <ul>
-      <li>✔ Todo lo del Plan TV+</li>
-      <li>✔ Calidad Ultra HD (4K)</li>
-      <li>✔ Hasta 8 dispositivos simultáneos</li>
-      <li>✔ Descargas para ver sin conexión Ilimitadas</li>
-    </ul>
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn-link">Elegir Plan</a>
-  </div>
-</section>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // ===== TOP BAR =====
-  const topBar = document.getElementById("topBar");
-  const hero = document.querySelector(".hero");
-  const heroHeight = hero.offsetHeight;
-
-  window.addEventListener("scroll", () => {
-    topBar.style.top = window.scrollY > heroHeight ? "0" : "-60px";
-  });
-
-  // Smooth scroll para botón "Ver planes"
-  document.getElementById("scrollBtn").addEventListener("click", e => {
-    e.preventDefault();
-    document.getElementById("planes").scrollIntoView({ behavior: "smooth" });
-  });
-
-// Smooth scroll para links del topBar
-document.querySelectorAll("#topBar nav a").forEach(link => {
-  link.addEventListener("click", function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute("href").substring(1);
-    const targetEl = document.getElementById(targetId);
-
-    if(targetEl){
-      const topOffset = topBar.offsetHeight;
-      const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
-      // Ajuste extra de margen (si tu sección tiene margin-top grande)
-      const marginAdjustment = 20; // puedes cambiar 20 por lo que se vea bien
-      window.scrollTo({ top: elementPosition - topOffset - marginAdjustment, behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
-});
-
-
-  // ===== FUNCIONES CARRUSEL =====
-  function initCarousel(carouselId, trackId, prevBtnId, nextBtnId, autoplayDelay = 3500) {
-    const carousel = document.getElementById(carouselId);
-    const track = document.getElementById(trackId);
-    let isAnimating = false;
-    let autoplay;
-
-    function setClasses() {
-      const slides = Array.from(track.children);
-      slides.forEach(s => s.className = "slide");
-      if(slides.length >= 3){
-        slides[1].classList.add("center");
-        slides[0].classList.add("side");
-        slides[2].classList.add("side");
-      }
-    }
-
-    function move(dir) {
-      if(isAnimating) return;
-      isAnimating = true;
-      const slideWidth = track.children[0].offsetWidth;
-      track.style.transition = "transform 0.6s ease";
-      track.style.transform = `translateX(${dir * -slideWidth}px)`;
-
-      setTimeout(() => {
-        track.style.transition = "none";
-        track.style.transform = "translateX(0)";
-        dir === 1 ? track.appendChild(track.firstElementChild)
-                  : track.insertBefore(track.lastElementChild, track.firstElementChild);
-        setClasses();
-        isAnimating = false;
-      }, 600);
-    }
-
-    function startAutoplay() {
-      stopAutoplay();
-      autoplay = setInterval(() => move(1), autoplayDelay);
-    }
-
-    function stopAutoplay() {
-      if(autoplay) clearInterval(autoplay);
-    }
-
-    // Botones
-    document.getElementById(nextBtnId).addEventListener("click", () => { stopAutoplay(); move(1); startAutoplay(); });
-    document.getElementById(prevBtnId).addEventListener("click", () => { stopAutoplay(); move(-1); startAutoplay(); });
-
-    // Hover pausa autoplay
-    carousel.addEventListener("mouseenter", stopAutoplay);
-    carousel.addEventListener("mouseleave", startAutoplay);
-
-    setClasses();
-    startAutoplay();
-  }
-
-  // Inicializar ambos carruseles
-  initCarousel("carousel", "track", "prev", "next");
-  initCarousel("new-carousel", "new-track", "new-prev", "new-next");
-});
-</script>
-
-
+    <main class="content-section">
+        <h2>Tendencias en ByttenApple</h2>
+        <div class="carousel-container">
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400&auto=format&fit=crop" alt="Peli 1">
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400&auto=format&fit=crop" alt="Peli 2">
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=400&auto=format&fit=crop" alt="Peli 3">
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1542204112-173663731102?q=80&w=400&auto=format&fit=crop" alt="Peli 4">
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?q=80&w=400&auto=format&fit=crop" alt="Peli 5">
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400&auto=format&fit=crop" alt="Peli 6">
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=400&auto=format&fit=crop" alt="Peli 7">
+            </div>
+        </div>
+    </main>
 
 </body>
-</html> 
+</html>
