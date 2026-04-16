@@ -6,7 +6,7 @@
     <title>ByttenApple | Streaming Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos Generales */
+        /* Estilos Generales (Mantenidos) */
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* Navegación */
         nav {
             padding: 20px 50px;
             display: flex;
@@ -34,12 +33,12 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #ff3b30; /* Un rojo "manzana" vibrante */
+            color: #ff3b30;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* Hero Section (Encabezado) */
+        /* Hero Section */
         .hero {
             height: 80vh;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a), 
@@ -82,7 +81,7 @@
             transform: scale(1.05);
         }
 
-        /* Carrusel / Cartelera */
+        /* Carrusel (Mantenido) */
         .content-section {
             padding: 50px;
         }
@@ -97,11 +96,11 @@
             gap: 15px;
             overflow-x: auto;
             padding-bottom: 20px;
-            scrollbar-width: none; /* Ocultar scroll en Firefox */
+            scrollbar-width: none;
         }
 
         .carousel-container::-webkit-scrollbar {
-            display: none; /* Ocultar scroll en Chrome/Safari */
+            display: none;
         }
 
         .movie-card {
@@ -124,25 +123,99 @@
         .movie-card:hover {
             transform: scale(1.1);
             z-index: 5;
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
         }
 
-        .movie-card::after {
-            content: "VER AHORA";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 20px 10px;
-            font-size: 0.8rem;
+        /* --- NUEVA SECCIÓN DE PLANES --- */
+        .plans-section {
+            padding: 80px 50px;
+            background-color: #0f0f0f;
             text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s;
         }
 
-        .movie-card:hover::after {
-            opacity: 1;
+        .plans-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .plans-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            padding: 40px;
+            border-radius: 20px;
+            width: 300px;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff3b30;
+        }
+
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ff3b30;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: #ff3b30;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .btn-plan {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-plan:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Estilo especial para el plan intermedio (Pro) */
+        .plan-card.featured {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            border: 2px solid #ff3b30;
+            position: relative;
+        }
+
+        .plan-card.featured::top {
+             /* Puedes añadir un badge de "Recomendado" aquí si quieres */
         }
 
     </style>
@@ -156,7 +229,7 @@
     <header class="hero">
         <h1>Lo mejor está aquí.</h1>
         <p>Series originales, películas premiadas y documentales que no verás en ningún otro lugar.</p>
-        <a href="#" class="btn-prueba">Comienza tu prueba gratuita</a>
+        <a href="#planes" class="btn-prueba">Comienza tu prueba gratuita</a>
     </header>
 
     <main class="content-section">
@@ -185,6 +258,47 @@
             </div>
         </div>
     </main>
+
+    <section class="plans-section" id="planes">
+        <h2>Elige tu plan</h2>
+        <div class="plans-grid">
+            
+            <div class="plan-card">
+                <h3>Plan TV</h3>
+                <div class="plan-price">$0.00<span>/mes</span></div>
+                <ul class="plan-features">
+                    <li>Acceso básico</li>
+                    <li>Calidad HD</li>
+                    <li>1 Dispositivo</li>
+                </ul>
+                <a href="https://tusitio.com/registro-tv" class="btn-plan">Seleccionar</a>
+            </div>
+
+            <div class="plan-card featured">
+                <h3>Plan TV PRO</h3>
+                <div class="plan-price">$0.00<span>/mes</span></div>
+                <ul class="plan-features">
+                    <li>Todo el contenido</li>
+                    <li>Calidad 4K HDR</li>
+                    <li>4 Dispositivos</li>
+                    <li>Sin anuncios</li>
+                </ul>
+                <a href="https://tusitio.com/registro-pro" class="btn-plan">Seleccionar</a>
+            </div>
+
+            <div class="plan-card">
+                <h3>Plan TV+</h3>
+                <div class="plan-price">$0.00<span>/mes</span></div>
+                <ul class="plan-features">
+                    <li>Contenido + Deportes</li>
+                    <li>Calidad Ultra HD</li>
+                    <li>Dispositivos ilimitados</li>
+                </ul>
+                <a href="https://tusitio.com/registro-plus" class="btn-plan">Seleccionar</a>
+            </div>
+
+        </div>
+    </section>
 
 </body>
 </html>
