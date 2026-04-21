@@ -6,12 +6,12 @@
     <title>ByttenApple | Streaming Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- ESTA ES LA LÍNEA QUE AÑADE LA ANIMACIÓN FLUIDA --- */
+        /* --- ANIMACIÓN FLUIDA --- */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Estilos Generales (Mantenidos) */
+        /* Estilos Generales */
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +43,7 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Section (Mantenido) */
+        /* Hero Section */
         .hero {
             height: 80vh;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a), 
@@ -86,9 +86,10 @@
             transform: scale(1.05);
         }
 
-        /* Carrusel (Mantenido) */
+        /* --- CARRUSEL CON FLECHAS --- */
         .content-section {
             padding: 50px;
+            position: relative;
         }
 
         .content-section h2 {
@@ -96,11 +97,18 @@
             font-size: 1.8rem;
         }
 
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
         .carousel-container {
             display: flex;
             gap: 15px;
             overflow-x: auto;
-            padding-bottom: 20px;
+            scroll-behavior: smooth;
+            padding: 20px 0;
             scrollbar-width: none;
         }
 
@@ -109,14 +117,14 @@
         }
 
         .movie-card {
-            min-width: 200px;
-            height: 300px;
+            min-width: 220px;
+            height: 330px;
             background-color: #222;
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease;
             cursor: pointer;
-            position: relative;
+            flex-shrink: 0;
         }
 
         .movie-card img {
@@ -126,11 +134,34 @@
         }
 
         .movie-card:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
             z-index: 5;
         }
 
-        /* Sección de Planes (Mantenida) */
+        /* Botones de las flechas */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 20px 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 2rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #ff3b30;
+        }
+
+        .prev { left: 0; }
+        .next { right: 0; }
+
+        /* Sección de Planes */
         .plans-section {
             padding: 80px 50px;
             background-color: #0f0f0f;
@@ -232,35 +263,29 @@
 
     <main class="content-section">
         <h2>Tendencias en ByttenApple</h2>
-        <div class="carousel-container">
-            <div class="movie-card">
-                <img src="https://www.aceprensa.com/wp-content/uploads/2015/07/211672-0-683x1024.jpg?q=80&w=400&auto=format&fit=crop" alt="Peli 1">
+        <div class="carousel-wrapper">
+            <button class="nav-btn prev" onclick="moveLeft()">&#10094;</button>
+            
+            <div class="carousel-container" id="carousel">
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" alt="1"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400" alt="2"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400" alt="3"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1542204112-173663731102?w=400" alt="4"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=400" alt="5"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="6"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400" alt="7"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1535016120720-40c646bebbcf?w=400" alt="8"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400" alt="9"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?w=400" alt="10"></div>
             </div>
-            <div class="movie-card">
-                <img src="https://static.wikia.nocookie.net/rocky/images/3/37/Rocky_IV_Special_Edition_Poster.jpg?q=80&w=400&auto=format&fit=crop" alt="Peli 2">
-            </div>
-            <div class="movie-card">
-                <img src="https://m.media-amazon.com/images/M/MV5BN2NkYTYzOGUtMzk1Yy00YmI0LWIzODEtMjQ0MWU0NWI4ODdlXkEyXkFqcGc@._V1_.jpg?q=80&w=400&auto=format&fit=crop" alt="Peli 3">
-            </div>
-            <div class="movie-card">
-                <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Happygilmoreposter.jpg?q=80&w=400&auto=format&fit=crop" alt="Peli 4">
-            </div>
-            <div class="movie-card">
-                <img src="https://play-lh.googleusercontent.com/-z70yNngxxVnYrtz1C8zrGHJjmJanfnOtx_mywXRGhr_TXcEOsHwDN37HVCCCZCo12c?q=80&w=400&auto=format&fit=crop" alt="Peli 5">
-            </div>
-            <div class="movie-card">
-                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400&auto=format&fit=crop" alt="Peli 6">
-            </div>
-            <div class="movie-card">
-                <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=400&auto=format&fit=crop" alt="Peli 7">
-            </div>
+
+            <button class="nav-btn next" onclick="moveRight()">&#10095;</button>
         </div>
     </main>
 
     <section class="plans-section" id="planes">
         <h2>Elige tu plan</h2>
         <div class="plans-grid">
-            
             <div class="plan-card">
                 <h3>Plan TV</h3>
                 <div class="plan-price">$0.00<span>/mes</span></div>
@@ -293,9 +318,20 @@
                 </ul>
                 <a href="#" class="btn-plan">Seleccionar</a>
             </div>
-
         </div>
     </section>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+
+        function moveRight() {
+            carousel.scrollBy({ left: 400, behavior: 'smooth' });
+        }
+
+        function moveLeft() {
+            carousel.scrollBy({ left: -400, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
