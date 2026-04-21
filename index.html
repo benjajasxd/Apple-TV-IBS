@@ -6,12 +6,10 @@
     <title>ByttenApple | Streaming Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- ANIMACIÓN FLUIDA --- */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Estilos Generales */
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +41,6 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Section */
         .hero {
             height: 80vh;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a), 
@@ -86,10 +83,9 @@
             transform: scale(1.05);
         }
 
-        /* --- CARRUSEL AJUSTADO --- */
+        /* --- AJUSTES DEL CARRUSEL --- */
         .content-section {
-            padding: 50px 80px; /* Aumentamos padding lateral para dar espacio a las flechas */
-            position: relative;
+            padding: 50px;
         }
 
         .content-section h2 {
@@ -101,11 +97,13 @@
             position: relative;
             display: flex;
             align-items: center;
+            /* Agregamos padding lateral para que las flechas no tapen fotos */
+            padding: 0 45px; 
         }
 
         .carousel-container {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             overflow-x: auto;
             scroll-behavior: smooth;
             padding: 20px 0;
@@ -117,14 +115,14 @@
         }
 
         .movie-card {
-            /* TAMAÑO SOLICITADO: 181px x 273px */
+            /* Formato exacto solicitado: 181 x 273 */
             min-width: 181px;
             width: 181px;
             height: 273px;
             background-color: #222;
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -132,15 +130,15 @@
         .movie-card img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Asegura que la imagen llene el espacio sin deformarse */
+            object-fit: cover;
         }
 
         .movie-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            z-index: 5;
         }
 
-        /* Flechas posicionadas fuera de las imágenes */
+        /* Botones de las flechas fuera del área de las fotos */
         .nav-btn {
             position: absolute;
             top: 50%;
@@ -148,27 +146,27 @@
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 80px;
             cursor: pointer;
             z-index: 10;
             font-size: 1.5rem;
-            border-radius: 50%;
+            border-radius: 5px;
+            transition: opacity 0.3s, background 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s, transform 0.2s;
         }
 
         .nav-btn:hover {
             background: #ff3b30;
-            transform: translateY(-50%) scale(1.1);
         }
 
-        .prev { left: -60px; } /* Sacamos la flecha del área de las fotos */
-        .next { right: -60px; } /* Sacamos la flecha del área de las fotos */
+        /* Flecha izquierda desaparece al inicio por defecto */
+        .prev { left: 0; opacity: 0; pointer-events: none; }
+        .next { right: 0; }
 
-        /* Sección de Planes (Mantenida) */
+        /* Sección de Planes */
         .plans-section {
             padding: 80px 50px;
             background-color: #0f0f0f;
@@ -271,22 +269,22 @@
     <main class="content-section">
         <h2>Tendencias en ByttenApple</h2>
         <div class="carousel-wrapper">
-            <button class="nav-btn prev" onclick="moveLeft()">&#10094;</button>
+            <button class="nav-btn prev" id="btnPrev" onclick="moveLeft()">&#10094;</button>
             
             <div class="carousel-container" id="carousel">
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" alt="1"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400" alt="2"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400" alt="3"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1542204112-173663731102?w=400" alt="4"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=400" alt="5"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="6"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400" alt="7"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1535016120720-40c646bebbcf?w=400" alt="8"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400" alt="9"></div>
-                <div class="movie-card"><img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?w=400" alt="10"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" alt="1"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=300" alt="2"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300" alt="3"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1542204112-173663731102?w=300" alt="4"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=300" alt="5"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=300" alt="6"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300" alt="7"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1535016120720-40c646bebbcf?w=300" alt="8"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300" alt="9"></div>
+                <div class="movie-card"><img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?w=300" alt="10"></div>
             </div>
 
-            <button class="nav-btn next" onclick="moveRight()">&#10095;</button>
+            <button class="nav-btn next" id="btnNext" onclick="moveRight()">&#10095;</button>
         </div>
     </main>
 
@@ -330,15 +328,43 @@
 
     <script>
         const carousel = document.getElementById('carousel');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+
+        function updateArrows() {
+            // Si el scroll está al inicio, ocultamos flecha izquierda
+            if (carousel.scrollLeft <= 5) {
+                btnPrev.style.opacity = "0";
+                btnPrev.style.pointerEvents = "none";
+            } else {
+                btnPrev.style.opacity = "1";
+                btnPrev.style.pointerEvents = "auto";
+            }
+
+            // Si el scroll llegó al final, ocultamos flecha derecha
+            // Usamos un margen de error de 5px para diferentes navegadores
+            if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
+                btnNext.style.opacity = "0";
+                btnNext.style.pointerEvents = "none";
+            } else {
+                btnNext.style.opacity = "1";
+                btnNext.style.pointerEvents = "auto";
+            }
+        }
 
         function moveRight() {
-            // Desplazamos aproximadamente 3 posters por clic
-            carousel.scrollBy({ left: 600, behavior: 'smooth' });
+            carousel.scrollBy({ left: 400, behavior: 'smooth' });
         }
 
         function moveLeft() {
-            carousel.scrollBy({ left: -600, behavior: 'smooth' });
+            carousel.scrollBy({ left: -400, behavior: 'smooth' });
         }
+
+        // Escuchar el evento de scroll para actualizar flechas en tiempo real
+        carousel.addEventListener('scroll', updateArrows);
+        
+        // Ejecutar una vez al cargar para verificar estado inicial
+        window.onload = updateArrows;
     </script>
 
 </body>
