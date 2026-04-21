@@ -86,9 +86,9 @@
             transform: scale(1.05);
         }
 
-        /* --- CARRUSEL CON FLECHAS --- */
+        /* --- CARRUSEL AJUSTADO --- */
         .content-section {
-            padding: 50px;
+            padding: 50px 80px; /* Aumentamos padding lateral para dar espacio a las flechas */
             position: relative;
         }
 
@@ -105,7 +105,7 @@
 
         .carousel-container {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
             padding: 20px 0;
@@ -117,12 +117,14 @@
         }
 
         .movie-card {
-            min-width: 220px;
-            height: 330px;
+            /* TAMAÑO SOLICITADO: 181px x 273px */
+            min-width: 181px;
+            width: 181px;
+            height: 273px;
             background-color: #222;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -130,38 +132,43 @@
         .movie-card img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Asegura que la imagen llene el espacio sin deformarse */
         }
 
         .movie-card:hover {
-            transform: scale(1.08);
-            z-index: 5;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
         }
 
-        /* Botones de las flechas */
+        /* Flechas posicionadas fuera de las imágenes */
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             border: none;
-            padding: 20px 15px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             z-index: 10;
-            font-size: 2rem;
-            border-radius: 5px;
-            transition: background 0.3s;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .nav-btn:hover {
             background: #ff3b30;
+            transform: translateY(-50%) scale(1.1);
         }
 
-        .prev { left: 0; }
-        .next { right: 0; }
+        .prev { left: -60px; } /* Sacamos la flecha del área de las fotos */
+        .next { right: -60px; } /* Sacamos la flecha del área de las fotos */
 
-        /* Sección de Planes */
+        /* Sección de Planes (Mantenida) */
         .plans-section {
             padding: 80px 50px;
             background-color: #0f0f0f;
@@ -325,11 +332,12 @@
         const carousel = document.getElementById('carousel');
 
         function moveRight() {
-            carousel.scrollBy({ left: 400, behavior: 'smooth' });
+            // Desplazamos aproximadamente 3 posters por clic
+            carousel.scrollBy({ left: 600, behavior: 'smooth' });
         }
 
         function moveLeft() {
-            carousel.scrollBy({ left: -400, behavior: 'smooth' });
+            carousel.scrollBy({ left: -600, behavior: 'smooth' });
         }
     </script>
 
