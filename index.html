@@ -6,6 +6,11 @@
     <title>ByttenApple | Streaming Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* --- ESTA ES LA LÍNEA QUE AÑADE LA ANIMACIÓN FLUIDA --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Estilos Generales (Mantenidos) */
         * {
             margin: 0;
@@ -38,7 +43,7 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Section */
+        /* Hero Section (Mantenido) */
         .hero {
             height: 80vh;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a), 
@@ -125,7 +130,7 @@
             z-index: 5;
         }
 
-        /* --- NUEVA SECCIÓN DE PLANES --- */
+        /* Sección de Planes (Mantenida) */
         .plans-section {
             padding: 80px 50px;
             background-color: #0f0f0f;
@@ -207,15 +212,8 @@
             color: black;
         }
 
-        /* Estilo especial para el plan intermedio (Pro) */
         .plan-card.featured {
-            background: linear-gradient(145deg, #1a1a1a, #252525);
             border: 2px solid #ff3b30;
-            position: relative;
-        }
-
-        .plan-card.featured::top {
-             /* Puedes añadir un badge de "Recomendado" aquí si quieres */
         }
 
     </style>
@@ -271,7 +269,7 @@
                     <li>Calidad HD</li>
                     <li>1 Dispositivo</li>
                 </ul>
-                <a href="https://tusitio.com/registro-tv" class="btn-plan">Seleccionar</a>
+                <a href="#" class="btn-plan">Seleccionar</a>
             </div>
 
             <div class="plan-card featured">
@@ -281,9 +279,8 @@
                     <li>Todo el contenido</li>
                     <li>Calidad 4K HDR</li>
                     <li>4 Dispositivos</li>
-                    <li>Sin anuncios</li>
                 </ul>
-                <a href="https://tusitio.com/registro-pro" class="btn-plan">Seleccionar</a>
+                <a href="#" class="btn-plan">Seleccionar</a>
             </div>
 
             <div class="plan-card">
@@ -294,7 +291,7 @@
                     <li>Calidad Ultra HD</li>
                     <li>Dispositivos ilimitados</li>
                 </ul>
-                <a href="https://tusitio.com/registro-plus" class="btn-plan">Seleccionar</a>
+                <a href="#" class="btn-plan">Seleccionar</a>
             </div>
 
         </div>
